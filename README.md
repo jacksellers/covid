@@ -20,19 +20,25 @@ make
 src/redis-server
 ```
 
-Console 2 - Django (from 'covid/app'):
+Console 2 - Django (from 'covid'):
 ```
+source appenv/bin/activate
+cd app
 python manage.py migrate
 python manage.py runserver
 ```
 
 Console 3 - Celery worker (from 'covid/app'):
 ```
+source appenv/bin/activate
+cd app
 celery -A app worker -l info
 ```
 
 Console 4 - Celery beat (from 'covid/app'):
 ```
+source appenv/bin/activate
+cd app
 celery -A app beat -l info
 ```
 

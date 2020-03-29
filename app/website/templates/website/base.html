@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e6100828cd.js" crossorigin="anonymous"></script>
+
+    <!-- Material Kit CSS -->
+    {% load static %}
+    <link href="{% static 'website/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'website/bootstrap/css/now-ui-dashboard.css' %}" rel="stylesheet" />
+    <link href="{% static 'website/css/custom.css' %}" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="wrapper">
+    <div class="sidebar" data-color="red">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+      <div class="logo">
+          <a href="{% url 'website:index' %}" class="simple-text logo-mini">
+            <i class="fas fa-virus"></i>
+          </a>
+
+          <a href="{% url 'website:index' %}" class="simple-text logo-normal">
+            <b>COVID-19</b> LIVE DATA
+          </a>
+      </div>
+
+      <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+          {% if selected == 'maps' %}
+            <li class="active ">
+          {% else %}
+            <li>
+          {% endif %}
+                <a href="{% url 'website:index' %}">
+
+                    <i class="fas fa-globe-americas"></i>
+
+                    <p>Map</p>
+                </a>
+            </li>
+
+            {% if selected == 'table' %}
+              <li class="active ">
+            {% else %}
+              <li>
+            {% endif %}
+              <a href="{% url 'website:table' %}">
+
+                  <i class="fas fa-table"></i>
+
+                  <p>Table</p>
+              </a>
+          </li>
+
+          {% if selected == 'graphs' %}
+            <li class="active ">
+          {% else %}
+            <li>
+          {% endif %}
+              <a href="{% url 'website:graphs' %}">
+
+                  <i class="fas fa-chart-line"></i>
+
+                  <p>Graphs</p>
+              </a>
+          </li>
+
+          {% if selected == 'api' %}
+            <li class="active ">
+          {% else %}
+            <li>
+          {% endif %}
+              <a href="{% url 'website:api' %}">
+
+                  <i class="fas fa-terminal"></i>
+
+                  <p>API</p>
+              </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    
+    <div class="main-panel" id="main-panel">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+  </div>
+</body>
+  <!--   Core JS Files   -->
+  <script src="{% static 'website/bootstrap/js/core/jquery.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'website/bootstrap/js/core/popper.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'website/bootstrap/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'website/bootstrap/js/plugins/perfect-scrollbar.jquery.min.js' %}" type="text/javascript"></script>
+
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'website/bootstrap/js/now-ui-dashboard.js' %}" type="text/javascript"></script>
+</html>
