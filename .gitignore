@@ -143,3 +143,4 @@ dmypy.json
 # Redis
 /redis-stable
 redis-stable.tar.gz
+dump.rdb

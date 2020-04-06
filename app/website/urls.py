@@ -7,7 +7,6 @@ app_name = 'website'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('table', views.table, name='table'),
-    path('graphs', views.graphs, name='graphs'),
+    path('<region>', views.index, name='index-region'),
     path('api', views.api, name='api')
 ]

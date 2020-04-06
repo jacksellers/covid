@@ -1,5 +1,59 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-    plotly map goes here
+
+<div id="content">
+
+    <!-- Navbar goes here -->
+    <nav class="navbar navbar-expand-lg bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'website:index' %}"><i class="fas fa-virus"></i> <b>COVID-19</b> LIVE DATA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'website:api' %}">API <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Grid A -->
+    <div class="container">
+        <div class="row">
+
+            <!-- Mini table -->
+            <div class="col-4">
+                <span>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>{{ region }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+            </div>
+
+            <!-- Graph -->
+            <div class="col-8">
+                <span>
+
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
 {% endblock %}

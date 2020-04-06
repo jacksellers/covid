@@ -1,0 +1,11 @@
+body {
+    background-color: #ffffff;
+}
+
+.navbar.bg-danger {
+    background-color: rgb(141, 0, 0) !important;
+}
+
+.table>tbody>tr>td {
+    color: black !important;
+  }
