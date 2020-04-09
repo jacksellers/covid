@@ -1,23 +1,31 @@
 from django.shortcuts import render
 from django.db.models import Sum
+from datetime import datetime
 
 from data.models import Report
 from website.map import generate_plot_div
 
 
-def index(request, region='global'):
+def index(request, region=None):
     # plot_div = generate_plot_div()
     # context = {'plot': plot_div}
-    confirmed_sum = Report.objects.aggregate(Sum('confirmed'))
-    deaths_sum = Report.objects.aggregate(Sum('deaths'))
-    recovered_sum = Report.objects.aggregate(Sum('recovered'))
+    if not region:
+        region = 'Global'
+    file_name = Report.objects.values_list('file_name').last()[0]
+    
+
+    """
+    total = Report.objects.aggregate(Sum('confirmed'))['confirmed__sum']
+    deaths = Report.objects.aggregate(Sum('deaths'))['deaths__sum']
+    recovered = Report.objects.aggregate(Sum('recovered'))['recovered__sum']
+    """
     context = {
-        'region': region.upper(),
-        'confirmed_sum': confirmed_sum,
-        'deaths_sum': deaths_sum,
-        'recovered_sum': recovered_sum
+        'region': region,
+        'total': '{:,}'.format(total),
+        'active': '{:,}'.format(total - deaths - recovered),
+        'deaths': '{:,}'.format(deaths),
+        'recovered': '{:,}'.format(recovered)
     }
-    print(context)
     return render(request, 'website/index.html', context)
 
 

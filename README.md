@@ -23,6 +23,7 @@ src/redis-server
 Console 2 - Django (from 'covid'):
 ```
 source appenv/bin/activate
+export DJANGO_SETTINGS_MODULE="app.settings"
 cd app
 python manage.py migrate
 python manage.py runserver

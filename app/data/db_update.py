@@ -7,11 +7,10 @@ import glob
 import dateutil.parser
 import sys
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 from github import Github
-
-django.setup()
 
 from data.models import Report, Update
 from data.keys import GITHUB_PASSWORD
@@ -19,15 +18,19 @@ from data.keys import GITHUB_PASSWORD
 
 def update():
     started_at = datetime.now()
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+    """
     g = Github('jackwsellers', GITHUB_PASSWORD)
     repo = g.get_repo('CSSEGISandData/COVID-19')
     reports = repo.get_contents(
         'csse_covid_19_data/csse_covid_19_daily_reports', 'master'
     )
+    """
     files_dir = '{}/data/files'.format(os.getcwd())
     db_path = '{}/db.sqlite3'.format(os.getcwd())
-
+    print(os.getcwd())
+    print(files_dir)
+    print(db_path)
+    """
     try:
         shutil.rmtree(files_dir)
     except FileNotFoundError:
@@ -42,9 +45,8 @@ def update():
                 url, '{}/{}'.format(files_dir, url[-14:])
             )
             print(url[-14:])
-
+    """
     files = glob.glob(os.path.join(files_dir, '*.csv'))
-    new_reports = []
 
     for file_name in files:
         csv_data = pd.read_csv(file_name)
@@ -72,7 +74,7 @@ def update():
                     recovered = int(row[5])
                 else:
                     recovered = 0
-            except:
+            except ParserError:
                 last_update = dateutil.parser.parse(row[4])
                 city = row[1]
                 state = row[2]
@@ -103,6 +105,7 @@ def update():
                     report_needed = False
             except ObjectDoesNotExist:
                 pass
+            """
             if report_needed:
                 new_report = Report.objects.create(
                     file_name=file_name[-14:][:-4],
@@ -115,7 +118,8 @@ def update():
                     recovered=recovered
                 )
                 new_report.save()
-
+            """
+    """
     ended_at = datetime.now()
     elapsed_time = ended_at - started_at
     update = Update.objects.create(
@@ -124,3 +128,6 @@ def update():
         elapsed_time=elapsed_time
     )
     update.save()
+    """
+
+update()

@@ -23,6 +23,8 @@
         </div>
     </nav>
 
+    <br>
+
     <!-- Grid A -->
     <div class="container">
         <div class="row">
@@ -32,13 +34,24 @@
                 <span>
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th>{{ region }}</th>
-                            </tr>
+                            <th colspan="2">{{ region }} cases</th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
+                                <td>Total</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Active</td>
+                                <td>{{ active }}</td>
+                            </tr>
+                            <tr>
+                                <td>Deaths</td>
+                                <td>{{ deaths }}</td>
+                            </tr>
+                            <tr>
+                                <td>Recovered</td>
+                                <td>{{ recovered }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -53,6 +66,42 @@
             </div>
         </div>
     </div>
+
+    <br>
+
+    <!-- Grid B -->
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <span>
+                <table class="table">
+                    <thead>
+                        <th></th>
+                        <th colspan="4">Total</th>
+                        <th colspan="4">Per Capita</th>
+                    </thead>
+                    <thead>
+                        <th>Country</th>
+                        <th>Cases</th>
+                        <th>Active</th>
+                        <th>Deaths</th>
+                        <th>Recovered</th>
+                        <th>Cases</th>
+                        <th>Active</th>
+                        <th>Deaths</th>
+                        <th>Recovered</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{ total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span>
+          </div>
+        </div>
+      </div>
 
 
 </div>
